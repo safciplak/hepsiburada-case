@@ -1,0 +1,36 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    # ports from container exposed to the docker machine and the guest machine
+    ports:
+      # 80 on the host, 8080 on the guest. Websever listens on 8080
+      - "8080:8080" # http
+      - "443:443" # https
+    # file with environment declarations for the container
+    volumes:
+      - ./.env:/app/.env
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    networks:
+      - hepsiburada
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: hepsiburada
+      MYSQL_PASSWORD: hepsiburada
+      MYSQL_ROOT_PASSWORD: hepsiburada
+      MYSQL_DATABASE: hepsiburada
+      MYSQL_ROOT_HOST: '%'
+    # sync folders. MySQL data is stored outside container so that rebuilding doesn't clear db.
+    # folder is at workspace root.
+    command: mysqld --sql_mode=""
+    networks:
+      - hepsiburada
+networks:
+  hepsiburada:
+    driver: bridge

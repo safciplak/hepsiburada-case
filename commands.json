@@ -1,0 +1,49 @@
+{
+  "commands" : [
+     {
+       "command": "create_product P1 100 1000"
+     },
+     {
+       "command":  "create_campaign C1 P1 5 20 100"
+     },
+     {
+       "command":  "get_product_info P1"
+     },
+     {
+       "command":  "increase_time 1"
+     },
+     {
+       "command":  "get_product_info P1"
+     },
+     {
+       "command":  "increase_time 1"
+     },
+     {
+       "command":  "get_product_info P1"
+     },
+     {
+       "command":  "increase_time 1"
+     },
+     {
+       "command":  "get_product_info P1"
+     },
+     {
+       "command":  "increase_time 1"
+     },
+     {
+       "command":  "get_product_info P1"
+     },
+     {
+       "command":  "increase_time 2"
+     },
+     {
+       "command":  "get_product_info P1"
+     },
+     {
+       "command":  "get_campaign_info C1"
+     },
+    {
+      "command":  "create_order P1 1"
+    }
+  ]
+}
